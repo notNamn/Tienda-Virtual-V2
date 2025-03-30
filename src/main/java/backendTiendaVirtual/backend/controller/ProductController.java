@@ -88,6 +88,7 @@ public class ProductController {
     private ProductDto convertToDto(Product product) {
         CategoryDto categoryDto = new CategoryDto(product.getCategory().getName());
         return new ProductDto(
+                product.getId(),
                 product.getTitle(),
                 product.getDescription(),
                 product.getPrice(),
