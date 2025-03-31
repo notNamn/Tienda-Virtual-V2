@@ -2,10 +2,7 @@ package backendTiendaVirtual.backend.persitence.entity;
 
 import backendTiendaVirtual.backend.persitence.entity.auth.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -13,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "sellers")
+@Builder
 public class Seller {
 
     @Id
@@ -27,10 +25,13 @@ public class Seller {
     @Column(name = "shop_address", nullable = false)
     private String shopAddress;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(nullable = false, unique = true)
+    private Integer carnet;
+
+    @Column(name = "phone_number", nullable = false, unique = true)
     private Integer phoneNumber;
 
     @OneToOne
-    @JoinColumn(name = "user_id", unique = true)
+    @JoinColumn(name = "user_id")
     private User user;
 }

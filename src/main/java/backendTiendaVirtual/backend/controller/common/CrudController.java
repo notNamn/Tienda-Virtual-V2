@@ -1,10 +1,8 @@
 package backendTiendaVirtual.backend.controller.common;
 
 /*
- * @param <E> entidad
  * @param <D> entidadDTO
  */
-
 import org.springframework.http.ResponseEntity;
 
 public interface CrudController< D> {

@@ -25,14 +25,14 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private Seller seller;
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     private Double total;
 

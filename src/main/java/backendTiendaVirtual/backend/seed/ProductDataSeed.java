@@ -6,13 +6,12 @@ import backendTiendaVirtual.backend.persitence.repository.CategoryRepository;
 import backendTiendaVirtual.backend.persitence.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 //@Component
 @AllArgsConstructor
-public class DataSeed implements CommandLineRunner {
+public class ProductDataSeed implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
     private ProductRepository productRepository;

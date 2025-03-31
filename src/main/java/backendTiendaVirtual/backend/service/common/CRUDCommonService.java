@@ -13,7 +13,9 @@ import java.util.Optional;
 
 public interface CRUDCommonService <E, D> {
 
-    List<E> findAll();
+   default List<E> findAll(){
+       return null;
+   }
 
    default  Optional<E> findById(Long id){
        return null;
