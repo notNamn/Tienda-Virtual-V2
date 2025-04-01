@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -34,13 +33,22 @@ public class Invoice {
     @JoinColumn(name = "order_id")
     private Order order;
 
+    transient private Double subtotal;
+
+    private Double IGV;
+
     private Double total;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @PrePersist
     protected void onCreate(){
         this.createdAt = LocalDateTime.now();
+        this.subtotal = this.order.getTotalOrder();
+
+        if (IGV != null) {
+            this.IGV = 0.10; // 10% de IGV
+        }
     }
 }

@@ -31,8 +31,6 @@ public class Sale {
     private Customer customer;
 
 
-    private Double total;
-
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 

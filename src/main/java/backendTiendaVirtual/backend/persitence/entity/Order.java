@@ -7,7 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Maestro
+ */
 
 @Entity
 @Getter
@@ -20,9 +25,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "sub_total")
-    private Double subTotal;
+    @Column(name = "total_order")
+    private Double totalOrder;
 
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OrderDetaill> orderDetaills;
+    // patron    1-N
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
+    private List<OrderDetaill> orderDetails = new ArrayList<>();
+
 }

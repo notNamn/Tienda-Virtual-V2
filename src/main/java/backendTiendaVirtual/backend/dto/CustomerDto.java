@@ -25,4 +25,13 @@ public class CustomerDto {
                 customer.getCarnet()
         );
     }
+
+    public static Customer converterToEntity(CustomerDto customerDto) {
+        Customer customer = new Customer();
+        customer.setFirstName(customerDto.getFirstName());
+        customer.setLastName(customerDto.getLastName());
+        customer.setPhoneNumber(customerDto.getPhoneNumber());
+        customer.setCarnet(customerDto.getCarnet());
+        return customer;
+    }
 }
