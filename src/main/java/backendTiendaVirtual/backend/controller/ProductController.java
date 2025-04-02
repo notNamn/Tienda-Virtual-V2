@@ -30,6 +30,26 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/title/{title}")
+    public ResponseEntity<?> findsByTitle(@PathVariable String title) {
+        try {
+            List<ProductDto> products = productService.findsByTitle(title)
+                    .stream()
+                    .map(this::convertToDto)
+                    .collect(Collectors.toList());
+            if (products.isEmpty()) {
+                return ResponseEntity
+                        .status(HttpStatus.NO_CONTENT)
+                        .body(new Message(200, "Product not found"));
+            }
+            return ResponseEntity.ok(products);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new Message(404, e.getMessage()));
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         try {

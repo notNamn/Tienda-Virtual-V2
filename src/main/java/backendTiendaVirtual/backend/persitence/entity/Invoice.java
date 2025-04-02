@@ -47,7 +47,7 @@ public class Invoice {
         this.createdAt = LocalDateTime.now();
         this.subtotal = this.order.getTotalOrder();
 
-        if (IGV != null) {
+        if (IGV == null) {
             this.IGV = 0.10; // 10% de IGV
         }
     }

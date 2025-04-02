@@ -191,6 +191,27 @@ http://localhost:8080/product/1
     }
 }
 ````
+- ### GET BY NAME :
+http://localhost:8080/product/title/camiseta
+
+````json
+[
+    {
+        "id": 10,
+        "title": "Camiseta Nike",
+        "description": "Camiseta deportiva Nike para hombre",
+        "price": 30.0,
+        "stock": 50,
+        "imageUrl": "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg",
+        "category": {
+            "name": "Moda"
+        }
+    }
+]
+````
+
+
+
 - ### CREATE :
 http://localhost:8080/product
 

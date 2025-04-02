@@ -35,6 +35,11 @@ public class ImplProductService implements IProductService {
     }
 
     @Override
+    public List<Product> findsByTitle(String title) {
+        return productRepository.findByTitleContainingIgnoreCase(title);
+    }
+
+    @Override
     @Transactional
     public Product save(ProductDto entityDTO) {
         if (!categoryRepository.existsByName(entityDTO.getCategory().getName())) {

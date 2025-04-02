@@ -22,6 +22,7 @@ public class Sale {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private Seller seller;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
@@ -30,12 +31,22 @@ public class Sale {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    transient private Double subtotal;
 
-    @Column(name = "created_at", nullable = false)
+    private Double IGV;
+
+    private Double total;
+
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @PrePersist
     protected void onCreate(){
         this.createdAt = LocalDateTime.now();
+        this.subtotal = this.order.getTotalOrder();
+
+        if (IGV == null) {
+            this.IGV = 0.10; // 10% de IGV
+        }
     }
 }
