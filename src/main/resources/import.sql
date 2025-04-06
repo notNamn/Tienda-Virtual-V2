@@ -34,6 +34,8 @@ INSERT INTO products (id, title, description, price, stock, image_url, category_
 INSERT INTO products (id, title, description, price, stock, image_url, category_id) VALUES (14, 'Zapatillas Adidas', 'Zapatillas Adidas deportivas', 85.0, 40, 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg', 4);
 
 INSERT INTO products (id, title, description, price, stock, image_url, category_id) VALUES (15, 'Aspiradora Dyson', 'Aspiradora Dyson V15 Detect', 700.0, 7, 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg', 3);
+INSERT INTO products (id, title, description, price, stock, image_url, category_id) VALUES (16, 'Aspiradora Bosch', 'Aspiradora BOSH super fast', 700.0, 7, 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg', 3);
+INSERT INTO products (id, title, description, price, stock, image_url, category_id) VALUES (17, 'Aspiradora Oster', 'Aspiradora Oster super new', 700.0, 7, 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg', 3);
 
 -- Ajustar la secuencia de ID para evitar conflictos
 ALTER SEQUENCE categories_id_seq RESTART WITH 5;
