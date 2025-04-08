@@ -1,8 +1,9 @@
 package backendTiendaVirtual.backend.persitence.entity.auth;
 
-import backendTiendaVirtual.backend.persitence.entity.Seller;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -24,6 +25,16 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    transient private String token;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
 }
 

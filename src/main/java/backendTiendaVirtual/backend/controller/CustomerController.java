@@ -4,6 +4,7 @@ import backendTiendaVirtual.backend.controller.common.CrudController;
 import backendTiendaVirtual.backend.dto.CustomerDto;
 import backendTiendaVirtual.backend.exeption.Message;
 import backendTiendaVirtual.backend.persitence.entity.Customer;
+import backendTiendaVirtual.backend.security.annotation.SellerPermission;
 import backendTiendaVirtual.backend.service.ICustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ public class CustomerController implements CrudController<CustomerDto> {
     private ICustomerService customerService;
 
     @GetMapping
+    @SellerPermission
     @Override
     public ResponseEntity<?> findAll() {
         List<CustomerDto> customers = customerService.findAll()
@@ -32,6 +34,7 @@ public class CustomerController implements CrudController<CustomerDto> {
     }
 
     @PostMapping
+    @SellerPermission
     @Override
     public ResponseEntity<?> save(@RequestBody CustomerDto entityDTO) {
         try{

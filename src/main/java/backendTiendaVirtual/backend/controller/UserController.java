@@ -4,13 +4,13 @@ import backendTiendaVirtual.backend.controller.common.CrudController;
 import backendTiendaVirtual.backend.dto.UserDto;
 import backendTiendaVirtual.backend.exeption.Message;
 import backendTiendaVirtual.backend.persitence.entity.auth.User;
+import backendTiendaVirtual.backend.security.annotation.AdminPermission;
 import backendTiendaVirtual.backend.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -20,6 +20,7 @@ public class UserController implements CrudController<UserDto> {
 
     @GetMapping
     @Override
+    @AdminPermission
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok()
                 .body(userService.findAll());
@@ -27,6 +28,7 @@ public class UserController implements CrudController<UserDto> {
 
     @PostMapping
     @Override
+    @AdminPermission
     public ResponseEntity<?> save(@RequestBody UserDto entityDTO) {
         try{
             User user = userService.save(entityDTO);

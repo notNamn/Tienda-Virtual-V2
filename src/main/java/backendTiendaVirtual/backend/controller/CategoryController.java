@@ -3,6 +3,7 @@ package backendTiendaVirtual.backend.controller;
 import backendTiendaVirtual.backend.controller.common.CrudController;
 import backendTiendaVirtual.backend.dto.CategoryDto;
 import backendTiendaVirtual.backend.exeption.Message;
+import backendTiendaVirtual.backend.security.annotation.SellerPermission;
 import backendTiendaVirtual.backend.service.ICategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ public class CategoryController implements CrudController<CategoryDto> {
 
     @GetMapping
     @Override
+    @SellerPermission
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok().body(categoryService.findAll());
     }

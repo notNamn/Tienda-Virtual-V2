@@ -7,6 +7,7 @@ import backendTiendaVirtual.backend.persitence.repository.SellerRepository;
 import backendTiendaVirtual.backend.persitence.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,22 +17,23 @@ import java.util.List;
 public class UserDataSeed implements CommandLineRunner {
     private UserRepository userRepository;
     private SellerRepository sellerRepository;
+    private PasswordEncoder passwordEncoder;
     @Override
     public void run(String... args) throws Exception {
         User userAdmin = User.builder()
                 .username("admin")
-                .password("admin")
+                .password(passwordEncoder.encode("admin"))
                 .role(Role.ADMIN)
                 .build();
         // Hibernate: insert into users (password,role,username) values (?,?,?)
         User userSeller = User.builder()
-                .username("seller")
-                .password("seller")
+                .username("seller1")
+                .password(passwordEncoder.encode("seller"))
                 .role(Role.SELLER)
                 .build();
         User userSeller2 = User.builder()
-                .username("qwew")
-                .password("seller")
+                .username("seller2")
+                .password(passwordEncoder.encode("seller"))
                 .role(Role.SELLER)
                 .build();
         // Hibernate: insert into sellers (carnet,first_name,last_name,phone_number,shop_address,user_id) values (?,?,?,?,?,?)
