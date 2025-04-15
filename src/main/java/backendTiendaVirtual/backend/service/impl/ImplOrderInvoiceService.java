@@ -7,6 +7,8 @@ import backendTiendaVirtual.backend.service.IOrderInvoiceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class ImplOrderInvoiceService implements IOrderInvoiceService {
@@ -17,6 +19,11 @@ public class ImplOrderInvoiceService implements IOrderInvoiceService {
     private CustomerRepository customerRepository;
     private SellerRepository sellerRepository;
     private InvoiceRepository invoiceRepository;
+
+    @Override
+    public Optional<Invoice> findById(Long id) {
+        return invoiceRepository.findById(id);
+    }
 
     @Override
     public Order createOrder() {

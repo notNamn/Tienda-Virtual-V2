@@ -20,6 +20,23 @@ public class OrderToInvoiceController implements CartOrderController {
 
     private  IOrderInvoiceService orderInvoiceService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        try {
+            Invoice invoice = orderInvoiceService
+                    .findById(id)
+                    .orElseThrow(()-> new RuntimeException("Order not found"));
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(InvoiceDto.converterToDto(invoice));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new Message(400, "Order not found", e.getMessage()));
+        }
+    }
+
+
     @PostMapping
     @Override
     public ResponseEntity<?> createOrder() {
