@@ -1,5 +1,6 @@
 package backendTiendaVirtual.backend.security.annotation;
 
+import jakarta.annotation.security.PermitAll;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.lang.annotation.ElementType;
@@ -9,6 +10,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@PreAuthorize("permiteAll()")
+@PermitAll
 public @interface PublicPermission {
 }

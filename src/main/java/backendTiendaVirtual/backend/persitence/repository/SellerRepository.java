@@ -9,4 +9,7 @@ import java.util.Optional;
 @Repository
 public interface SellerRepository extends JpaRepository<Seller, Long> {
     Optional<Seller> findByCarnet(Integer carnet);
+
+    Optional<Seller> findByUser_Username(String username);
 }
+

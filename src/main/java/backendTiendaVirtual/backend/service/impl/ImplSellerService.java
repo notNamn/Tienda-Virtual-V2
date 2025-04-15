@@ -8,6 +8,8 @@ import backendTiendaVirtual.backend.persitence.repository.SellerRepository;
 import backendTiendaVirtual.backend.persitence.repository.UserRepository;
 import backendTiendaVirtual.backend.service.ISellerService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +19,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class ImplSellerService implements ISellerService {
-
+    private static Logger logger = LoggerFactory.getLogger(ImplSellerService.class);
     private SellerRepository sellerRepository;
     private UserRepository userRepository;
 
@@ -26,6 +28,7 @@ public class ImplSellerService implements ISellerService {
     public List<Seller> findAll() {
         return sellerRepository.findAll();
     }
+
 
     @Override
     @Transactional // crear un vendedor por el login
@@ -49,6 +52,16 @@ public class ImplSellerService implements ISellerService {
     @Override
     public Optional<Seller> findByCarnet(Integer carnet) {
         Optional<Seller> seller = sellerRepository.findByCarnet(carnet);
+        if (!seller.isPresent()) {
+            throw new RuntimeException("Seller not found");
+        }
+        return seller;
+    }
+
+    @Override
+    public Optional<Seller> findSellerByUsername(String username){
+        Optional<Seller> seller = sellerRepository.findByUser_Username(username);
+        logger.info("Seller Find: {} ", seller);
         if (!seller.isPresent()) {
             throw new RuntimeException("Seller not found");
         }

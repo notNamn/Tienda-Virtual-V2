@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface ISellerService extends CRUDCommonService<Seller, SellerDto> {
     Optional<Seller> findByCarnet(Integer carnet);
+
+    Optional<Seller> findSellerByUsername(String username);
 }

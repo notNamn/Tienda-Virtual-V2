@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authorization.method.PrePostTemplateDefaults;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -38,7 +40,8 @@ public class ConfigSecurity {
     private static final List<String> PUBLIC_PATHS = List.of(
             "/api/authentication/sign-in",
             "/api/authentication/sign-up",
-            "/product/**"
+            "/product/**",
+            "/category/**"
     );
 
     @Bean
@@ -65,10 +68,15 @@ public class ConfigSecurity {
         AuthenticationManager authenticationManager = auth.build();
 
         http.csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())
+                //.cors(cors -> cors.disable())
+                // *** CAMBIO CLAVE: Habilita CORS usando la configuración por defecto (que buscará tu WebConfig) ***
+                .cors(Customizer.withDefaults())// ACTIVA LOS BEARER TOKEN DEL FRONEND
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authHttp -> {
                     logger.info("INICIANDO CONFIGURACION DE SEGURIDAD");
+                    // *** RECOMENDADO: Permite explícitamente las solicitudes OPTIONS ***
+                    // Esto asegura que las solicitudes preflight de CORS no sean bloqueadas por la seguridad
+                    authHttp.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll(); // Permite las opciones CORS
 
                     String[] publicPathsArray = PUBLIC_PATHS.toArray(new String[0]);
                     authHttp.requestMatchers(publicPathsArray).permitAll();

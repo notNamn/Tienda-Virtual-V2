@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class ImplOrderSaleService implements IOrderSaleService {
@@ -18,6 +20,11 @@ public class ImplOrderSaleService implements IOrderSaleService {
     private CustomerRepository customerRepository;
     private SellerRepository sellerRepository;
     private SaleRepository saleRepository;
+
+    @Override
+    public Optional<Sale> findById(Long id) {
+        return saleRepository.findById(id);
+    }
 
     @Override
     public Order createOrder() {
