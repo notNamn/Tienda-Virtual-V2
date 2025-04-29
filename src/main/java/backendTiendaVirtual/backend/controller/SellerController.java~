@@ -1,0 +1,106 @@
+package backendTiendaVirtual.backend.controller;
+
+import backendTiendaVirtual.backend.controller.common.CrudController;
+import backendTiendaVirtual.backend.dto.InvoiceDto;
+import backendTiendaVirtual.backend.dto.SaleDto;
+import backendTiendaVirtual.backend.dto.SellerDto;
+import backendTiendaVirtual.backend.dto.UserDto;
+import backendTiendaVirtual.backend.exeption.Message;
+import backendTiendaVirtual.backend.persitence.entity.Invoice;
+import backendTiendaVirtual.backend.persitence.entity.Seller;
+import backendTiendaVirtual.backend.persitence.entity.auth.User;
+import backendTiendaVirtual.backend.service.IHistoryOrdersByUser;
+import backendTiendaVirtual.backend.service.ISellerService;
+import backendTiendaVirtual.backend.service.IUserService;
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/seller")
+@AllArgsConstructor
+public class SellerController implements CrudController<SellerDto> {
+    private static Logger logger = LoggerFactory.getLogger(SellerController.class);
+    private ISellerService sellerService;
+    private IUserService userService;
+
+    private IHistoryOrdersByUser historyOrderService;
+
+    @GetMapping
+    @Override
+    public ResponseEntity<?> findAll() {
+
+        List<SellerDto> sellers = sellerService.findAll()
+                .stream()
+                .map(SellerDto::converterToDto)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(sellers);
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<?> findBySellerByUsername(@PathVariable String username) {
+        logger.info("USERNAME USER : {}  ", username);
+        SellerDto sellerDto = sellerService.findSellerByUsername(username)
+                .map(SellerDto::converterToDto)
+                .orElseThrow(()-> new RuntimeException("Seller not found"));
+        logger.info("Seller Find: {} ", sellerDto);
+        return ResponseEntity.ok().body(sellerDto);
+    }
+
+
+    @PostMapping("/${userName}")
+    public ResponseEntity<?> registerSeller(@RequestBody SellerDto entityDTO, @PathVariable String userName) {
+        try {
+            User user = userService.findByUsername(userName)
+                    .orElseThrow(()-> new RuntimeException("User not found"));
+            entityDTO.setUser(UserDto.converterToDto(user));
+            Seller seller = sellerService.save(entityDTO);
+
+            return ResponseEntity.ok()
+                    .body(SellerDto.converterToDto(seller));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new Message(400, e.getMessage()));
+        }
+    }
+
+    // HISTORIAL DE VENTAS
+    @GetMapping("/history-sales/{userId}")
+    public ResponseEntity<?> getAllSalesByUser(@PathVariable Long userId) {
+        List<SaleDto> sellerDtos = historyOrderService.findAllSalesByUserId(userId)
+                .stream()
+                .map(SaleDto::converterToDto)
+                .collect(Collectors.toList());
+        logger.info("Sales By User: {}", sellerDtos);
+        if (sellerDtos.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .body(new Message(200, "Sales not found"));
+        }
+        return ResponseEntity.ok().body(sellerDtos);
+    }
+
+    // HISTORIAL DE FACTURAS - PROFORMAS
+    @GetMapping("/history-invoices/{userId}")
+    public ResponseEntity<?> getAllInvoicesByUser(@PathVariable Long userId) {
+        List<InvoiceDto> sellerDtos = historyOrderService.findAllInvoicesByUserId(userId)
+                .stream()
+                .map(InvoiceDto::converterToDto)
+                .collect(Collectors.toList());
+        logger.info("Invoices By User: {}", sellerDtos);
+        if (sellerDtos.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .body(new Message(200, "Invoices not found"));
+        }
+        return ResponseEntity.ok().body(sellerDtos);
+    }
+}
