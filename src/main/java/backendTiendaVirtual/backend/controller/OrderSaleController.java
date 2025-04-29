@@ -83,7 +83,7 @@ public class OrderSaleController implements CartOrderController {
         }
     }
 
-    @PutMapping("/remove")
+    @PutMapping("/remove/{orderId}")
     @Override
     public ResponseEntity<?> removeProductToOrder(@PathVariable Long orderId,
                                                   @RequestParam Long productId,

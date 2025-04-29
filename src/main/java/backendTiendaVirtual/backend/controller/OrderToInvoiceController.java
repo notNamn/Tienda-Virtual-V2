@@ -52,11 +52,11 @@ public class OrderToInvoiceController implements CartOrderController {
         }
     }
 
-    @PostMapping("/add/{orderId}/product/{productId}/quantity/{quantity}")
+    @PostMapping("/add/{orderId}")
     @Override
     public ResponseEntity<?> addProductToOrder(@PathVariable Long orderId,
-                                               @PathVariable Long productId,
-                                               @PathVariable Integer quantity) {
+                                               @RequestParam Long productId,
+                                               @RequestParam Integer quantity) {
         try {
             Order order = orderInvoiceService
                     .addProductToOrder(orderId, productId, quantity);
@@ -68,11 +68,11 @@ public class OrderToInvoiceController implements CartOrderController {
         }
     }
 
-    @PutMapping("/remove/{orderId}/product/{productId}/quantity/{quantity}")
+    @PutMapping("/remove/{orderId}")
     @Override
     public ResponseEntity<?> removeProductToOrder(@PathVariable Long orderId,
-                                                  @PathVariable Long productId,
-                                                  @PathVariable Integer quantity) {
+                                                  @RequestParam Long productId,
+                                                  @RequestParam Integer quantity) {
         try {
             Order order = orderInvoiceService
                     .removeProductToOrder(orderId, productId, quantity);
@@ -84,7 +84,7 @@ public class OrderToInvoiceController implements CartOrderController {
         }
     }
 
-    @DeleteMapping("/{orderId}")
+    @DeleteMapping("/delete/{orderId}")
     @Override
     public ResponseEntity<?> deleteOrder(@PathVariable Long orderId) {
         try {
@@ -99,7 +99,7 @@ public class OrderToInvoiceController implements CartOrderController {
         }
     }
 
-    @PostMapping("/{orderId}/process")
+    @PostMapping("/process/{orderId}")
     @Override
     public ResponseEntity<?> processOrder(@PathVariable Long orderId,
                                           @RequestParam Integer carnetSeller,
