@@ -1,3 +1,5 @@
+import { URL_INVOICE, URL_INVOICE_HISTORY, URL_PRODUCT, URL_PROFILE, URL_SALE, URL_SALE_HISTORY } from '@/model/proyect'
+import Link from 'next/link'
 import React from 'react'
 
 export default function Drawer() {
@@ -28,8 +30,36 @@ export default function Drawer() {
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                     <h2 className='font-bold text-3xl text-center pb-4' >MENU</h2>
                     <div className="text-2xl" >
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <li>
+                            <Link href={URL_PRODUCT} >
+                                Productos
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={URL_SALE} >
+                                Ventas
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={URL_SALE_HISTORY} >
+                                Historial De Ventas
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={URL_INVOICE} >
+                                Proformas
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={URL_INVOICE_HISTORY} >
+                               Historial de Proformas
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={URL_PROFILE} >
+                                Profile
+                            </Link>
+                        </li>
                     </div>
                 </ul>
             </div>

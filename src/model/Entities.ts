@@ -25,7 +25,7 @@ export interface Category {
 }
 
 export interface Customer {
-    id: number;
+    id?: number;
     firstName: string;
     lastName: string;
     phoneNumber: number;
@@ -42,8 +42,8 @@ export interface OrderDetail{
 
 export interface Order {
     id: number;
-    totalOrder: number;
     orderDetails: OrderDetail[];
+    count_product: number;
 }
 
 export interface Seller {
@@ -65,4 +65,38 @@ export interface Invoice{
     IGV: number;
     total: number;
     createdAt: Date;
+}
+
+export interface Sale{
+    id: number;
+    order: Order;
+    seller: Seller;
+    customer: Customer;
+    totalInvoice: number;
+    subtotal: number;
+    IGV: number;
+    total: number;
+    createdAt: Date;
+}
+
+export interface Message {
+    status?: number;
+    message?: string;
+    details?: string;
+    isError: boolean;
+}
+
+// carrito de compras- froned  
+export interface ShoppingCart {
+    product: Product;
+    quantity: number;
+}
+
+// token  
+export interface JwtPayload {
+    sub: string;
+    roles: string;
+    userId: number;
+    iat: number;
+    exp: number;
 }
