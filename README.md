@@ -53,8 +53,15 @@
 
 ## 📸 Capturas del Sistema
 
-![Ventas v2](https://placehold.co/600x400/EFEFEF/grey?text=Captura+1+Ventas+v2)
-![Seguridad](https://placehold.co/600x400/EFEFEF/grey?text=Captura+2+Seguridad)
+![image](https://github.com/user-attachments/assets/1165f3f0-1a9e-459f-99d0-cb9dfb5f6a6b)
+![image](https://github.com/user-attachments/assets/e1147a83-3a2b-42f4-8d87-712194232136)
+![image](https://github.com/user-attachments/assets/94278b7f-a90d-4fb9-ad21-e2efcdcd8f4e)
+![image](https://github.com/user-attachments/assets/ec0e76b4-96a9-4dfb-80e7-678a17882b11)
+
+*Venta y Proforma*
+![image](https://github.com/user-attachments/assets/cfca4687-a226-45f7-811c-2cc341444388)
+![image](https://github.com/user-attachments/assets/2557df4e-e546-4f1d-8f39-408554c9270e)
+
 
 ---
 
