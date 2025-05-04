@@ -10,14 +10,14 @@
 
 ## 🧑‍💻 Tecnologías Utilizadas
 
-### 🔙 Backend
+###  Backend
 - **Java**
 - **Spring Boot**
 - **Spring Security + JWT**
 - **Spring Data JPA**
 - **PostgreSQL**
 
-### 🌐 Frontend
+###  Frontend
 - **Next.js** (React + SSR)
 - **TypeScript**
 - **Tailwind CSS**
@@ -30,14 +30,14 @@
 
 ## ✨ Funcionalidades Principales
 
-- 🔐 Registro e inicio de sesión **seguro con JWT**
-- 🛡 Control de acceso según el **rol del usuario**
-- 🛒 Gestión completa de **carrito de compras**
-- 📦 CRUD completo de **productos**
-- 🧾 **Emisión y registro de ventas y proformas**
-- 📄 Generación de comprobantes en **PDF con React-PDF**
-- 📊 Dashboard con métricas (si se implementó)
-- 📚 Historial completo de transacciones por usuario
+- Registro e inicio de sesión **seguro con JWT**
+- Control de acceso según el **rol del usuario**
+- Gestión completa de **carrito de compras**
+- CRUD completo de **productos**
+- **Emisión y registro de ventas y proformas**
+- Generación de comprobantes en **PDF con React-PDF**
+- Dashboard con métricas (si se implementó)
+- Historial completo de transacciones por usuario
 
 ---
 
@@ -67,7 +67,7 @@
 
 ## 🚀 Enlace al Repositorio
 
-🔗 [GitHub - Sistema de Ventas y Proformas v2](https://github.com/notNamn/Tienda-Virtual-V2.git)
+🔗 [GitHub - Sistema de Ventas y Proformas v2](https://github.com/ph0Void/Tienda-Virtual-V2.git)
 
 > Si desea visualizar una demostracion por favor dirijaze a eset enalce de youtube .
 
