@@ -41,6 +41,7 @@ public class ImplAuthenticationService implements IAuthenticationService {
         String token = jwtProvider.generateToken(userPrincipal);
         User sigInUser = userPrincipal.getUser();
         sigInUser.setToken(token);
+        // retorna el
         return sigInUser;
     }
 
